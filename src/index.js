@@ -38,7 +38,18 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    
+    const arrWords = expr.split('**********');
+  
+    let res = '';
+    arrWords.forEach((word,ind) => {
+        res += word.split(/(?=(?:\d{10})+$)/).map((letter) => MORSE_TABLE[letter.split(/(?=(?:\d{2})+$)/).map((item) => 
+                ((item == '00') ? '' : (item == '10') ? '.' : '-')).join('')]
+            ).join('') + ((ind < (arrWords.length - 1)) ? ' ' : '');
+        }
+    );
+    return res;       
+    
 }
 
 module.exports = {
